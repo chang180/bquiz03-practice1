@@ -62,3 +62,7 @@ function to($url){
     header("location:$url");
 }
 
+$Movie=new DB('movie');
+$Poster=new DB('poster');
+$Ord=new DB('ord');
+

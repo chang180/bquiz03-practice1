@@ -6,6 +6,7 @@
                 <ul class="lists">
                 </ul>
                 <ul class="controls">
+                    &#9664;&#9654;
                 </ul>
             </div>
         </div>
@@ -22,3 +23,23 @@
         </div>
     </div>
 </div>
+<script>
+    var nowpage = 0,
+        num = <?= count($image); ?>;
+
+    function pp(x) {
+        var s, t;
+        if (x == 1 && nowpage - 1 >= 0) {
+            nowpage--;
+        }
+        if (x == 2 && (nowpage + 1) <= num * 1 - 3) {
+            nowpage++;
+        }
+        $(".im").hide()
+        for (s = 0; s <= 2; s++) {
+            t = s * 1 + nowpage * 1;
+            $("#ssaa" + t).show()
+        }
+    }
+    pp(1)
+</script>
