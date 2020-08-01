@@ -72,13 +72,21 @@ function to($url)
     header("location:$url");
 }
 $level = [
-   "1"=> '普遍級',
-   "2"=> '保護級',
-   "3"=> '輔導級',
-   "4"=> '限級級'
+    "1" => '普遍級',
+    "2" => '保護級',
+    "3" => '輔導級',
+    "4" => '限級級'
 ];
 
-if(empty($_SESSION['ani'])) $_SESSION['ani']=1;
+$sess = [
+    "1" => "14:00~16:00",
+    "2" => "16:00~18:00",
+    "3" => "18:00~20:00",
+    "4" => "20:00~22:00",
+    "5" => "22:00~24:00"
+];
+
+if (empty($_SESSION['ani'])) $_SESSION['ani'] = 1;
 
 $Movie = new DB('movie');
 $Poster = new DB('poster');

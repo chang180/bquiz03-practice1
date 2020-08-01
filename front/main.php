@@ -86,7 +86,6 @@ $("#onToday").on("click",function(){
         }
     }
     pp(1)
-
     let anim = <?= $_SESSION['ani']; ?>;
     // anim=3;
 
