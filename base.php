@@ -23,6 +23,7 @@ class DB
             $sql .= " WHERE " . implode(" && ", $tmp);
         }
         $sql .= $arg[1] ?? "";
+        // echo $sql;
         return $this->pdo->query($sql)->fetchAll();
     }
     public function count(...$arg)
@@ -71,10 +72,10 @@ function to($url)
     header("location:$url");
 }
 $level = [
-    '普遍級',
-    '保護級',
-    '輔導級',
-    '限級級'
+   "1"=> '普遍級',
+   "2"=> '保護級',
+   "3"=> '輔導級',
+   "4"=> '限級級'
 ];
 
 if(empty($_SESSION['ani'])) $_SESSION['ani']=1;

@@ -26,17 +26,47 @@
     </div>
     <div class="half">
         <h1>院線片清單</h1>
-        <div class="rb tab" style="width:95%;">
-            <table>
-                <tbody>
-                    <tr> </tr>
-                </tbody>
-            </table>
-            <div class="ct"> </div>
+        <div class="rb tab" style="width:95%;display:flex;flex-wrap:wrap;">
+            <?php
+            $today = date("Y-m-d");
+            $ondate = date("Y-m-d", strtotime("-2 days"));
+            $div = 4;
+            $now = $_GET['p'] ?? "1";
+            $start = ($now - 1) * $div;
+            $movies = $Movie->all(['sh' => 1], " && ondate >= '$ondate' && ondate <= '$today' ORDER BY rank LIMIT $start,$div ");
+            $total = $Movie->count(['sh' => 1], " && ondate >= '$ondate' && ondate <= '$today'");
+            $pages = ceil($total / $div);
+            foreach ($movies as $m) {
+            ?>
+                <div style="min-width:48%;border:1px solid black">
+                    <div class="ct">片名：<?= $m['name']; ?></div>
+                    <img src="img/<?= $m['poster']; ?>" style="height:90px;width:80px;">
+                    分級：<?= @$level[$m['level']]; ?><br>
+                    上映日期：<?= $m['ondate']; ?><br>
+                    <a href="index.php?do=intro&id=<?= $m['id']; ?>">劇情簡介</a>
+                    <a href="?do=order&id=<?= $m['id']; ?>">線上訂票</a>
+                </div>
+            <?php } ?>
         </div>
+        <?php
+        // echo $total;
+        for ($i = 1; $i <= $pages; $i++) {
+            $font = ($now == $i) ? "30px" : "20px";
+            echo "<a href='?p=$i' style='font-size:$font'>$i</a>";
+        }
+        ?>
     </div>
 </div>
+<button type="button" id="onToday">所有電影今天上映！</button>
+
 <script>
+$("#onToday").on("click",function(){
+    $.get("api/on_today.php",function(){
+        alert("通通上演啦！");
+        location.reload();
+    })
+})
+
     var nowpage = 0,
         num = <?= count($rows); ?>,
         po = 0;
@@ -50,7 +80,7 @@
             nowpage++;
         }
         $(".im").hide()
-        for (s = 0; s <= 2; s++) {
+        for (s = 0; s <= 3; s++) {
             t = s * 1 + nowpage * 1;
             $("#ssaa" + t).show()
         }
@@ -61,8 +91,8 @@
     // anim=3;
 
     setInterval(() => {
-        // let p = po++;
-        if (po > num) po = 0;
+        po++;
+        if (po >= num) po = 0;
         ani(po);
     }, 2000);
 
@@ -104,10 +134,6 @@
                     left: "+=200px",
                     opacity: "1"
                 });
-                // $(".show").slideUp(function() {
-                //     change(post);
-                // });
-                // $(".show").slideDown();
                 break;
         }
     }
