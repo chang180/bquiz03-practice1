@@ -8,7 +8,7 @@
         <td>操作</td>
     </tr>
     <?php
-$rows=$Poster->all([]," ORDER BY rank");
+$rows=$Poster->all([]," ORDER BY rank DESC");
 foreach($rows as $row){
     ?>
     <tr>
@@ -28,7 +28,7 @@ foreach($rows as $row){
 </form>
 <hr>
 <h1 class="ct">新增預告片海報</h1>
-<form action="api/upload.php" method="post" enctype="multipart/form-data">
+<form action="api/upload_poster.php" method="post" enctype="multipart/form-data">
 預告片海報<input type="file" name="img">預告片片名<input type="text" name="name"><br>
 <button>新增</button><button type="reset">重置</button>
 </form>

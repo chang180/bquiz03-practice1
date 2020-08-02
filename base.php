@@ -24,6 +24,7 @@ class DB
         }
         $sql .= $arg[1] ?? "";
         // echo $sql;
+        // exit;
         return $this->pdo->query($sql)->fetchAll();
     }
     public function count(...$arg)
@@ -56,6 +57,8 @@ class DB
     }
     public function q($sql)
     {
+        // echo $sql;
+        // exit;
         return $this->pdo->query($sql)->fetchAll();
     }
     public function save($arg)
@@ -79,11 +82,11 @@ $level = [
 ];
 
 $sess = [
-    "1" => "14:00~16:00",
-    "2" => "16:00~18:00",
-    "3" => "18:00~20:00",
-    "4" => "20:00~22:00",
-    "5" => "22:00~24:00"
+    "14:00~16:00",
+    "16:00~18:00",
+    "18:00~20:00",
+    "20:00~22:00",
+    "22:00~24:00"
 ];
 
 if (empty($_SESSION['ani'])) $_SESSION['ani'] = 1;
