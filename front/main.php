@@ -1,4 +1,4 @@
-<div id="mm">
+
     <div class="half" style="vertical-align:top;">
         <h1>預告片介紹</h1>
         <div class="rb tab" style="width:95%;">
@@ -56,16 +56,15 @@
         }
         ?>
     </div>
-</div>
 <button type="button" id="onToday">所有電影今天上映！</button>
 
 <script>
-$("#onToday").on("click",function(){
-    $.get("api/on_today.php",function(){
-        alert("通通上演啦！");
-        location.reload();
+    $("#onToday").on("click", function() {
+        $.get("api/on_today.php", function() {
+            alert("通通上演啦！");
+            location.reload();
+        })
     })
-})
 
     var nowpage = 0,
         num = <?= count($rows); ?>,

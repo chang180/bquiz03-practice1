@@ -1,4 +1,4 @@
-﻿<?php include_once "base.php";?>
+﻿<?php include_once "base.php"; ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <!-- saved from url=(0047)? -->
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -22,11 +22,13 @@
         ABC影城票價全面八折優惠1個月
       </marquee>
     </div>
-    <?php
-    $do = $_GET['do'] ?? "main";
-    $file = "front/" . $do . ".php";
-    include file_exists($file) ? $file : "front/main.php";
-    ?>
+    <div id="mm">
+      <?php
+      $do = $_GET['do'] ?? "main";
+      $file = "front/" . $do . ".php";
+      include file_exists($file) ? $file : "front/main.php";
+      ?>
+    </div>
     <div id="bo"> ©Copyright 2010~2014 ABC影城 版權所有 </div>
   </div>
 </body>
